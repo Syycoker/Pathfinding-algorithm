@@ -24,12 +24,14 @@ namespace Visual_Pathfinding_Algorithm
     {
       InitializeComponent();
       UpdateControl();
+      timer.Tick += HandleTransformation;
     }
 
     public Node(Node next, object data)
     {
       InitializeComponent();
       UpdateControl();
+      timer.Tick += HandleTransformation;
 
       Next = next;
       Data = data;
@@ -37,7 +39,9 @@ namespace Visual_Pathfinding_Algorithm
     #endregion
 
     #region Public
+    public bool Enlarging = false;
     public bool Highlighted = false;
+    public Point LastInteractionLocation;
     public void Highlight(bool highlighted = true)
     {
       BackColor = highlighted ? HighlightedColour : DefaultColour;
@@ -51,45 +55,54 @@ namespace Visual_Pathfinding_Algorithm
       Size = ControlSize;
       BackColor = DefaultColour;
       Cursor = Cursors.Hand;
-      timer.Tick += HandleTransformation;
+      Location = LastInteractionLocation;
     }
 
     private void HandleTransformation(object? sender, EventArgs e)
     {
+      int locationTranslation = 13;
       int scale = 5;
+      float lerpRate = 0.15f;
 
       if (Enlarging)
       {
+        Location = new Point(LastInteractionLocation.X - locationTranslation, LastInteractionLocation.Y - locationTranslation);
         if (Size.Width < ControlHoverSize.Width)
         {
           Width += scale;
           Height += scale;
+          BackColor = BackColor.Lerp(HighlightedColour, lerpRate);
         }
         else
         {
           timer.Stop();
           BackColor = HighlightedColour;
         }
+        BringToFront();
       }
       else
       {
+        Location = LastInteractionLocation;
         if (Size.Width > ControlSize.Width)
         {
           Width -= scale;
           Height -= scale;
+          BackColor = BackColor.Lerp(DefaultColour, lerpRate);
         }
         else
         {
           timer.Stop();
           BackColor = DefaultColour;
         }
+        SendToBack();
       }
     }
-    public bool Enlarging = false;
+
     protected override void OnMouseEnter(EventArgs e)
     {
       base.OnMouseEnter(e);
       Enlarging = true;
+      LastInteractionLocation = Location;
       timer.Start();
     }
     protected override void OnMouseLeave(EventArgs e)
@@ -97,6 +110,7 @@ namespace Visual_Pathfinding_Algorithm
       base.OnMouseLeave(e);
       Enlarging = false;
       timer.Start();
+      UpdateControl();
     }
     #endregion
 
