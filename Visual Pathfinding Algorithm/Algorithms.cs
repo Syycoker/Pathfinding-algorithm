@@ -36,6 +36,11 @@ namespace Visual_Pathfinding_Algorithm
           }
         }
 
+        foreach (Node? node in nodes)
+        {
+          
+        }
+
         return curr;
       }
       catch

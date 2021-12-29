@@ -14,6 +14,7 @@ namespace Visual_Pathfinding_Algorithm
   {
     #region Control Attributes
     Size ControlSize = new Size(50,50);
+    Size ControlHoverSize = new Size(75, 75);
     Color DefaultColour = Color.White;
     Color HighlightedColour = Color.DodgerBlue;
     #endregion
@@ -49,6 +50,53 @@ namespace Visual_Pathfinding_Algorithm
     {
       Size = ControlSize;
       BackColor = DefaultColour;
+      Cursor = Cursors.Hand;
+      timer.Tick += HandleTransformation;
+    }
+
+    private void HandleTransformation(object? sender, EventArgs e)
+    {
+      int scale = 5;
+
+      if (Enlarging)
+      {
+        if (Size.Width < ControlHoverSize.Width)
+        {
+          Width += scale;
+          Height += scale;
+        }
+        else
+        {
+          timer.Stop();
+          BackColor = HighlightedColour;
+        }
+      }
+      else
+      {
+        if (Size.Width > ControlSize.Width)
+        {
+          Width -= scale;
+          Height -= scale;
+        }
+        else
+        {
+          timer.Stop();
+          BackColor = DefaultColour;
+        }
+      }
+    }
+    public bool Enlarging = false;
+    protected override void OnMouseEnter(EventArgs e)
+    {
+      base.OnMouseEnter(e);
+      Enlarging = true;
+      timer.Start();
+    }
+    protected override void OnMouseLeave(EventArgs e)
+    {
+      base.OnMouseLeave(e);
+      Enlarging = false;
+      timer.Start();
     }
     #endregion
 

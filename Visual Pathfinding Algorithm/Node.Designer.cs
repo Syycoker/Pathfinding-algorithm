@@ -28,10 +28,25 @@
     /// </summary>
     private void InitializeComponent()
     {
-      components = new System.ComponentModel.Container();
+      this.components = new System.ComponentModel.Container();
+      this.timer = new System.Windows.Forms.Timer(this.components);
+      this.SuspendLayout();
+      // 
+      // timer
+      // 
+      this.timer.Interval = 25;
+      // 
+      // Node
+      // 
+      this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Name = "Node";
+      this.ResumeLayout(false);
+
     }
 
     #endregion
+
+    private System.Windows.Forms.Timer timer;
   }
 }

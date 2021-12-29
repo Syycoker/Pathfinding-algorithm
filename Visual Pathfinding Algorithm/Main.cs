@@ -7,7 +7,7 @@ namespace Visual_Pathfinding_Algorithm
       InitializeComponent();
       AddNodes();
 
-      Algorithms.UseLine();
+      //Algorithms.UseLine();
     }
 
     #region Methods
@@ -16,6 +16,7 @@ namespace Visual_Pathfinding_Algorithm
       int nodeXPos = 0;
       int nodeYPos = 0;
 
+      // Truncation occurs here, maybe float?
       int xStep = Width / numOfNodes;
       int yStep = Height / numOfNodes;
 
