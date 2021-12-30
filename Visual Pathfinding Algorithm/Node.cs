@@ -10,8 +10,15 @@ using System.Windows.Forms;
 
 namespace Visual_Pathfinding_Algorithm
 {
-  public partial class Node : UserControl, INode
+  public partial class Node : UserControl
   {
+    #region Node Attributes
+    private string name = string.Empty;
+    private LinkedList<Node> shortestPath = new LinkedList<Node>();
+    private int distance = int.MaxValue;
+    Dictionary<Node, int> adjacentNodes = new Dictionary<Node, int>();
+    #endregion
+
     #region Control Attributes
     Size ControlSize = new Size(50,50);
     Size ControlHoverSize = new Size(75, 75);
@@ -27,14 +34,13 @@ namespace Visual_Pathfinding_Algorithm
       timer.Tick += HandleTransformation;
     }
 
-    public Node(Node next, object data)
+    public Node(string name)
     {
       InitializeComponent();
       UpdateControl();
       timer.Tick += HandleTransformation;
 
-      Next = next;
-      Data = data;
+      this.name = name;
     }
     #endregion
 
@@ -47,10 +53,15 @@ namespace Visual_Pathfinding_Algorithm
       BackColor = highlighted ? HighlightedColour : DefaultColour;
       Highlighted = highlighted;
     }
+
+    public void addDestination(Node destination, int distance)
+    {
+      adjacentNodes.Add(destination, distance);
+    }
     #endregion
 
     #region Private
-    private void UpdateControl()
+    protected void UpdateControl()
     {
       Size = ControlSize;
       BackColor = DefaultColour;
@@ -58,7 +69,7 @@ namespace Visual_Pathfinding_Algorithm
       Location = LastInteractionLocation;
     }
 
-    private void HandleTransformation(object? sender, EventArgs e)
+    protected void HandleTransformation(object? sender, EventArgs e)
     {
       int locationTranslation = 13;
       int scale = 5;
@@ -105,6 +116,7 @@ namespace Visual_Pathfinding_Algorithm
       LastInteractionLocation = Location;
       timer.Start();
     }
+
     protected override void OnMouseLeave(EventArgs e)
     {
       base.OnMouseLeave(e);
@@ -112,11 +124,6 @@ namespace Visual_Pathfinding_Algorithm
       timer.Start();
       UpdateControl();
     }
-    #endregion
-
-    #region Interface
-    public Node? Next { get; set; }
-    public object? Data { get; set; }
     #endregion
   }
 }

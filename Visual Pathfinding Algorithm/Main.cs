@@ -11,6 +11,10 @@ namespace Visual_Pathfinding_Algorithm
     }
 
     #region Methods
+    /// <summary>
+    /// Displays a group of nodes as a grid for representational purposes.
+    /// </summary>
+    /// <param name="numOfNodes"></param>
     private void AddNodes(int numOfNodes = 10)
     {
       int nodeXPos = 0;
