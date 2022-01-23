@@ -30,17 +30,24 @@
     {
       this.components = new System.ComponentModel.Container();
       this.timer = new System.Windows.Forms.Timer(this.components);
+      this.NodeTypeTimer = new System.Windows.Forms.Timer(this.components);
       this.SuspendLayout();
       // 
       // timer
       // 
       this.timer.Interval = 25;
       // 
+      // NodeTypeTimer
+      // 
+      this.NodeTypeTimer.Enabled = true;
+      this.NodeTypeTimer.Tick += new System.EventHandler(this.NodeTypeTimer_Tick);
+      // 
       // Node
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Name = "Node";
+      this.Click += new System.EventHandler(this.Node_Click);
       this.ResumeLayout(false);
 
     }
@@ -48,5 +55,6 @@
     #endregion
 
     private System.Windows.Forms.Timer timer;
+    private System.Windows.Forms.Timer NodeTypeTimer;
   }
 }

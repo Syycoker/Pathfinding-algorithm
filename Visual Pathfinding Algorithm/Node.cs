@@ -17,6 +17,8 @@ namespace Visual_Pathfinding_Algorithm
     private LinkedList<Node> shortestPath = new LinkedList<Node>();
     private int distance = int.MaxValue;
     Dictionary<Node, int> adjacentNodes = new Dictionary<Node, int>();
+
+    public NodeType Type { get; set; } = NodeType.NULL_NODE;
     #endregion
 
     #region Control Attributes
@@ -125,5 +127,56 @@ namespace Visual_Pathfinding_Algorithm
       UpdateControl();
     }
     #endregion
+
+    private void Node_Click(object sender, EventArgs e)
+    {
+      if (Program.WrapperForm != null)
+      {
+        if (Program.WrapperForm.StartMode)
+        {
+          Type = NodeType.START_NODE;
+          MessageBox.Show("Node is now a 'Starting' node.");
+        }
+        if (Program.WrapperForm.NullMode)
+        {
+          Type = NodeType.NULL_NODE;
+          MessageBox.Show("Node is now an 'Empty' node.");
+        }
+        if (Program.WrapperForm.BlockMode)
+        {
+          Type = NodeType.BLOCKING_NODE;
+          MessageBox.Show("Node is now a 'Blocking' node.");
+        }
+        if (Program.WrapperForm.EndMode)
+        {
+          Type = NodeType.END_NODE;
+          MessageBox.Show("Node is now an 'Ending' node.");
+        }
+
+        Program.WrapperForm.ResetModes();
+      }
+    }
+
+    private void NodeTypeTimer_Tick(object sender, EventArgs e)
+    {
+      switch (Type)
+      {
+        case NodeType.START_NODE:
+          DefaultColour = Color.Green;
+          return;
+
+        case NodeType.NULL_NODE:
+          DefaultColour = Color.White;
+          return;
+
+        case NodeType.BLOCKING_NODE:
+          DefaultColour = Color.DarkGray;
+          return;
+
+        case NodeType.END_NODE:
+          DefaultColour = Color.Red;
+          return;
+      }
+    }
   }
 }

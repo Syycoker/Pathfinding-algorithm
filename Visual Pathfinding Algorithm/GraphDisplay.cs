@@ -1,8 +1,8 @@
 namespace Visual_Pathfinding_Algorithm
 {
-  public partial class Main : Form
+  public partial class GraphDisplay : Form
   {
-    public Main()
+    public GraphDisplay()
     {
       InitializeComponent();
       AddNodes();
@@ -10,7 +10,20 @@ namespace Visual_Pathfinding_Algorithm
       //Algorithms.UseLine();
     }
 
-    #region Methods
+    #region Public
+    /// <summary>
+    /// Explicitly sets all the nodes in the 'graph' back to it's null state.
+    /// </summary>
+    public void ResetNodes()
+    {
+      foreach (Node node in Controls)
+      {
+        node.Type = NodeType.NULL_NODE;
+      }
+    }
+    #endregion
+
+    #region Private
     /// <summary>
     /// Displays a group of nodes as a grid for representational purposes.
     /// </summary>

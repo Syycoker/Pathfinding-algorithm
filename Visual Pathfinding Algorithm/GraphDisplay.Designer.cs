@@ -1,6 +1,6 @@
 ﻿namespace Visual_Pathfinding_Algorithm
 {
-  partial class Main
+  partial class GraphDisplay
   {
     /// <summary>
     ///  Required designer variable.
@@ -30,12 +30,12 @@
     {
       this.SuspendLayout();
       // 
-      // Main
+      // GraphDisplay
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(534, 511);
-      this.Name = "Main";
+      this.Name = "GraphDisplay";
       this.Text = "Grid";
       this.ResumeLayout(false);
 
