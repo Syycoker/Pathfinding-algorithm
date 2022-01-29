@@ -2,57 +2,71 @@ namespace Visual_Pathfinding_Algorithm
 {
   public partial class GraphDisplay : Form
   {
-    public GraphDisplay()
+
+    private const int MOVE_STRAIGHT_COST = 10;
+    private const int MOVE_DIAGONAL_COST = 14;
+
+    private Grid grid;
+    private List<Node>? openList;
+    private List<Node>? closedList;
+
+    public GraphDisplay(int width, int height)
     {
       InitializeComponent();
-      AddNodes();
 
-      //Algorithms.UseLine();
+      grid = new Grid(width, height);
     }
 
-    #region Public
-    /// <summary>
-    /// Explicitly sets all the nodes in the 'graph' back to it's null state.
-    /// </summary>
-    public void ResetNodes()
+    public List<Node> FindPath(int startX, int startY, int endX, int endY)
     {
-      foreach (Node node in Controls)
+      Node startNode = grid.GetGridObject(startX, startY);
+      Node endNode = grid.GetGridObject(endX, endY);
+
+      openList = new List<Node> { startNode };
+      closedList = new List<Node>();
+
+      for (int x = 0; x < grid.GetWidth(); x++)
       {
-        node.Type = NodeType.NULL_NODE;
-      }
-    }
-    #endregion
-
-    #region Private
-    /// <summary>
-    /// Displays a group of nodes as a grid for representational purposes.
-    /// </summary>
-    /// <param name="numOfNodes"></param>
-    private void AddNodes(int numOfNodes = 10)
-    {
-      int nodeXPos = 0;
-      int nodeYPos = 0;
-
-      // Truncation occurs here, maybe float?
-      int xStep = Width / numOfNodes;
-      int yStep = Height / numOfNodes;
-
-      while (nodeYPos < Height)
-      {
-        while (nodeXPos < Width)
+        for (int y = 0; y < grid.GetHeight(); y++)
         {
-          Node node = new Node();
-          Controls.Add(node);
-          node.Parent = this;
-          node.Location = new Point(nodeXPos, nodeYPos);
-          nodeXPos += xStep;
-
-          Algorithms.Nodes.Add(node);
+          Node pathNode = grid.GetGridObject(x, y);
+          pathNode.gCost = int.MaxValue;
+          pathNode.CalculateFCost();
+          pathNode.cameFromNode = null;
         }
-        nodeXPos = 0;
-        nodeYPos += yStep;
+      }
+
+      startNode.gCost = 0;
+      startNode.hCost = CalculateDistance(startNode, endNode);
+      startNode.CalculateFCost();
+
+      while (openList.Count > 0)
+      {
+        Node currentNode = GetLowestCostNode(openList);
       }
     }
-    #endregion
+
+    private int CalculateDistance(Node a, Node b)
+    {
+      int xDistance = Math.Abs(a.Location.X - b.Location.X);
+      int yDistance = Math.Abs(a.Location.Y - b.Location.Y);
+      int remaining = Math.Abs(xDistance - yDistance);
+      return MOVE_DIAGONAL_COST * Math.Min(xDistance, yDistance) + MOVE_STRAIGHT_COST * remaining;
+    }
+
+    private Node GetLowestCostNode(List<Node> pathNodeList)
+    {
+      Node lowestFCostNode = pathNodeList[0];
+
+      for (int i = 1; i < pathNodeList.Count; i++)
+      {
+        if (pathNodeList[i].fCost < lowestFCostNode.fCost)
+        {
+          lowestFCostNode = pathNodeList[i];
+        }
+      }
+
+      return lowestFCostNode;
+    }
   }
 }

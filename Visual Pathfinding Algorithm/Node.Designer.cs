@@ -36,10 +36,10 @@
       // timer
       // 
       this.timer.Interval = 25;
+      this.timer.Tick += new System.EventHandler(this.HandleTransformation);
       // 
       // NodeTypeTimer
       // 
-      this.NodeTypeTimer.Enabled = true;
       this.NodeTypeTimer.Tick += new System.EventHandler(this.NodeTypeTimer_Tick);
       // 
       // Node

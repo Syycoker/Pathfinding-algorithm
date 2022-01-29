@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Visual_Pathfinding_Algorithm
 {
-  public class Graph
+  public static class Algo
   {
-    private HashSet<Node> nodes = new HashSet<Node>();
-
-    public void addNode(Node nodeA)
-    {
-      nodes.Add(nodeA);
-    }
+    
   }
 }

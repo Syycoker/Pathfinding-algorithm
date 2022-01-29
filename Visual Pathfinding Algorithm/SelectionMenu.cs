@@ -61,8 +61,6 @@ namespace Visual_Pathfinding_Algorithm
       NullMode = false;
       BlockMode = true;
       EndMode = false;
-
-      SelectBlockNodeButton.Enabled = false;
     }
 
     private void SelectNullNodeButton_Click(object sender, EventArgs e)
@@ -71,8 +69,6 @@ namespace Visual_Pathfinding_Algorithm
       NullMode = true;
       BlockMode = false;
       EndMode = false;
-
-      SelectNullNodeButton.Enabled = false;
     }
 
     private void SelectEndNodeButton_Click(object sender, EventArgs e)

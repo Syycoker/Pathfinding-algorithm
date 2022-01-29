@@ -13,39 +13,41 @@ namespace Visual_Pathfinding_Algorithm
   public partial class Node : UserControl
   {
     #region Node Attributes
-    private string name = string.Empty;
-    private LinkedList<Node> shortestPath = new LinkedList<Node>();
-    private int distance = int.MaxValue;
-    Dictionary<Node, int> adjacentNodes = new Dictionary<Node, int>();
+    public Grid? Grid;
+    public NodeType Type { get; set; } = NodeType.NULL;
+    private int x;
+    private int y;
 
-    public NodeType Type { get; set; } = NodeType.NULL_NODE;
+    public int gCost;
+    public int hCost;
+    public int fCost;
+
+    public Node? cameFromNode;
     #endregion
-
     #region Control Attributes
     Size ControlSize = new Size(50,50);
     Size ControlHoverSize = new Size(75, 75);
     Color DefaultColour = Color.White;
     Color HighlightedColour = Color.DodgerBlue;
     #endregion
-
     #region Constructors
     public Node()
     {
       InitializeComponent();
       UpdateControl();
-      timer.Tick += HandleTransformation;
     }
 
-    public Node(string name)
+    public Node(Grid grid, int x, int y)
     {
       InitializeComponent();
       UpdateControl();
-      timer.Tick += HandleTransformation;
+      Grid = grid;
+      this.x = x;
+      this.y = y;
 
-      this.name = name;
+      Location = new Point(x ,y);
     }
     #endregion
-
     #region Public
     public bool Enlarging = false;
     public bool Highlighted = false;
@@ -56,13 +58,17 @@ namespace Visual_Pathfinding_Algorithm
       Highlighted = highlighted;
     }
 
-    public void addDestination(Node destination, int distance)
+    public void CalculateFCost()
     {
-      adjacentNodes.Add(destination, distance);
+      fCost = gCost + hCost;
     }
     #endregion
-
     #region Private
+
+    public override string ToString()
+    {
+      return x + "," + y;
+    }
     protected void UpdateControl()
     {
       Size = ControlSize;
@@ -127,30 +133,26 @@ namespace Visual_Pathfinding_Algorithm
       UpdateControl();
     }
     #endregion
-
+    #region Events
     private void Node_Click(object sender, EventArgs e)
     {
       if (Program.WrapperForm != null)
       {
         if (Program.WrapperForm.StartMode)
         {
-          Type = NodeType.START_NODE;
-          MessageBox.Show("Node is now a 'Starting' node.");
+          Type = NodeType.START;
         }
         if (Program.WrapperForm.NullMode)
         {
-          Type = NodeType.NULL_NODE;
-          MessageBox.Show("Node is now an 'Empty' node.");
+          Type = NodeType.NULL;
         }
         if (Program.WrapperForm.BlockMode)
         {
-          Type = NodeType.BLOCKING_NODE;
-          MessageBox.Show("Node is now a 'Blocking' node.");
+          Type = NodeType.BLOCK;
         }
         if (Program.WrapperForm.EndMode)
         {
-          Type = NodeType.END_NODE;
-          MessageBox.Show("Node is now an 'Ending' node.");
+          Type = NodeType.END;
         }
 
         Program.WrapperForm.ResetModes();
@@ -161,22 +163,23 @@ namespace Visual_Pathfinding_Algorithm
     {
       switch (Type)
       {
-        case NodeType.START_NODE:
+        case NodeType.START:
           DefaultColour = Color.Green;
           return;
 
-        case NodeType.NULL_NODE:
+        case NodeType.NULL:
           DefaultColour = Color.White;
           return;
 
-        case NodeType.BLOCKING_NODE:
+        case NodeType.BLOCK:
           DefaultColour = Color.DarkGray;
           return;
 
-        case NodeType.END_NODE:
+        case NodeType.END:
           DefaultColour = Color.Red;
           return;
       }
     }
+    #endregion
   }
 }

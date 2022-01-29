@@ -8,9 +8,9 @@ namespace Visual_Pathfinding_Algorithm
 {
   public enum NodeType
   {
-    START_NODE = 0,
-    NULL_NODE = 1,
-    BLOCKING_NODE = 2,
-    END_NODE = 3
+    START = 0,
+    NULL = 1,
+    BLOCK = 2,
+    END = 3
   }
 }

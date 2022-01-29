@@ -4,7 +4,6 @@ C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfindin
 C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\bin\Debug\net6.0-windows\Visual Pathfinding Algorithm.dll
 C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\bin\Debug\net6.0-windows\ref\Visual Pathfinding Algorithm.dll
 C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\bin\Debug\net6.0-windows\Visual Pathfinding Algorithm.pdb
-C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\obj\Debug\net6.0-windows\Visual Pathfinding Algorithm.GlobalUsings.g.cs
 C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\obj\Debug\net6.0-windows\Visual Pathfinding Algorithm.csproj.AssemblyReference.cache
 C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\obj\Debug\net6.0-windows\Visual_Pathfinding_Algorithm.Node.resources
 C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\obj\Debug\net6.0-windows\Visual Pathfinding Algorithm.csproj.GenerateResource.cache
