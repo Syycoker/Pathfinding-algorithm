@@ -23,7 +23,7 @@ namespace Visual_Pathfinding_Algorithm
     {
       InitializeComponent();
 
-      Graph = new GraphDisplay();
+      Graph = new GraphDisplay(10,10);
       Graph.TopLevel = false;
       Graph.Parent = Display.Panel2;
       Display.Panel2.Controls.Add(Graph);
@@ -85,8 +85,6 @@ namespace Visual_Pathfinding_Algorithm
     private void RefreshButton_Click(object sender, EventArgs e)
     {
       if (Graph == null) { return; }
-
-      Graph.ResetNodes();
 
       StartNodeButton.Enabled = true;
       SelectNullNodeButton.Enabled = true;

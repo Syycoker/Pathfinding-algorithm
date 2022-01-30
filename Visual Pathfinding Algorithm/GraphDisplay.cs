@@ -14,7 +14,7 @@ namespace Visual_Pathfinding_Algorithm
     {
       InitializeComponent();
 
-      grid = new Grid(width, height);
+      grid = new Grid(width, height, this);
     }
 
     public List<Node> FindPath(int startX, int startY, int endX, int endY)
@@ -43,7 +43,81 @@ namespace Visual_Pathfinding_Algorithm
       while (openList.Count > 0)
       {
         Node currentNode = GetLowestCostNode(openList);
+
+        if (currentNode == endNode)
+        {
+          // We've Reached the final node
+          return CalculatePath(endNode);
+        }
+
+        openList.Remove(currentNode);
+        closedList.Add(currentNode);
+
+        foreach (Node neighbourNode in GetNeighbourList(currentNode))
+        {
+          if (closedList.Contains(neighbourNode)) { continue; }
+          int tentativeGCost = currentNode.gCost + CalculateDistance(currentNode, neighbourNode);
+          if (tentativeGCost < neighbourNode.gCost)
+          {
+            neighbourNode.cameFromNode = currentNode;
+            neighbourNode.gCost = tentativeGCost;
+            neighbourNode.hCost = CalculateDistance(neighbourNode, endNode);
+            neighbourNode.CalculateFCost();
+
+            if (!openList.Contains(neighbourNode))
+            {
+              openList.Add(neighbourNode);
+            }
+          }
+        }
       }
+      // Out of nodes in the openList
+      return null;
+    }
+
+    /// <summary>
+    /// Gets all the neighbouring nodes, provided that they're within the grid's boundaries.
+    /// </summary>
+    /// <param name="currentNode"></param>
+    /// <returns></returns>
+    private List<Node> GetNeighbourList(Node currentNode)
+    {
+      List<Node> nList = new();
+      if (currentNode.Location.X - 1 >= 0)
+      {
+        nList.Add(GetNode(currentNode.Location.X - 1, currentNode.Location.Y));
+        if (currentNode.Location.Y - 1 >= 0) { nList.Add(GetNode(currentNode.Location.X - 1, currentNode.Location.Y - 1)); }
+        if (currentNode.Location.Y + 1 < grid.GetHeight()) { nList.Add(GetNode(currentNode.Location.X - 1, currentNode.Location.Y + 1)); }
+      }
+      if (currentNode.Location.X + 1 < grid.GetWidth())
+      {
+        nList.Add(GetNode(currentNode.Location.X + 1, currentNode.Location.Y));
+        if (currentNode.Location.Y - 1 >= 0) { nList.Add(GetNode(currentNode.Location.X + 1, currentNode.Location.Y - 1)); }
+        if (currentNode.Location.Y + 1 < grid.GetHeight()) { nList.Add(GetNode(currentNode.Location.X + 1, currentNode.Location.Y + 1)); }
+      }
+      if (currentNode.Location.Y - 1 >= 0) { nList.Add(GetNode(currentNode.Location.X, currentNode.Location.Y - 1)); }
+      if (currentNode.Location.Y + 1 < grid.GetHeight()) { nList.Add(GetNode(currentNode.Location.X, currentNode.Location.Y + 1)); }
+
+      return nList;
+    }
+
+    private Node GetNode(int x, int y)
+    {
+      return grid.GetGridObject(x, y);
+    }
+
+    private List<Node> CalculatePath(Node endNode)
+    {
+      List<Node> path = new List<Node>();
+      path.Add(endNode);
+      Node currentNode = endNode;
+      while (currentNode.cameFromNode != null)
+      {
+        path.Add(currentNode.cameFromNode);
+        currentNode = currentNode.cameFromNode;
+      }
+      path.Reverse();
+      return path;
     }
 
     private int CalculateDistance(Node a, Node b)

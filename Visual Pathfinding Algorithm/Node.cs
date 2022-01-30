@@ -74,6 +74,7 @@ namespace Visual_Pathfinding_Algorithm
       Size = ControlSize;
       BackColor = DefaultColour;
       Cursor = Cursors.Hand;
+      Location = new Point(x, y);
       Location = LastInteractionLocation;
     }
 

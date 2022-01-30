@@ -10,7 +10,7 @@ namespace Visual_Pathfinding_Algorithm
   {
     private Node[,] gridArray;
 
-    public Grid(int width, int height)
+    public Grid(int width, int height, Control control)
     {
       gridArray = new Node[width, height];
 
@@ -18,7 +18,12 @@ namespace Visual_Pathfinding_Algorithm
       {
         for (int y = 0; y < gridArray.GetLength(1); y++)
         {
-          gridArray[x, y] = new Node(this, x, y);
+          int xLocation = x * 55; // 50 for the defaultsize + 5 for the spacing.
+          int yLocation = y * 55;
+          Node newNode = new Node(this, xLocation, yLocation);
+          newNode.Parent = control;
+          control.Controls.Add(newNode);
+          gridArray[x, y] = newNode;
         }
       }
     }
