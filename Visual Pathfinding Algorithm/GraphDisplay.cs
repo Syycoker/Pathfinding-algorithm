@@ -162,5 +162,10 @@ namespace Visual_Pathfinding_Algorithm
 
       return lowestFCostNode;
     }
+
+    private void GraphDisplay_Resize(object sender, EventArgs e)
+    {
+      Text = Width + "-" + Height;
+    }
   }
 }
