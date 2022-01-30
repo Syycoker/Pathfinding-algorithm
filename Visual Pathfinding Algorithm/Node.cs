@@ -69,59 +69,6 @@ namespace Visual_Pathfinding_Algorithm
       Cursor = Cursors.Hand;
       Location = LastInteractionLocation;
     }
-    protected void HandleTransformation(object? sender, EventArgs e)
-    {
-      int locationTranslation = 13;
-      int scale = 5;
-      float lerpRate = 0.15f;
-
-      if (Enlarging)
-      {
-        Location = new Point(LastInteractionLocation.X - locationTranslation, LastInteractionLocation.Y - locationTranslation);
-        if (Size.Width < ControlHoverSize.Width)
-        {
-          Width += scale;
-          Height += scale;
-          BackColor = BackColor.Lerp(HighlightedColour, lerpRate);
-        }
-        else
-        {
-          timer.Stop();
-          BackColor = HighlightedColour;
-        }
-        BringToFront();
-      }
-      else
-      {
-        Location = LastInteractionLocation;
-        if (Size.Width > ControlSize.Width)
-        {
-          Width -= scale;
-          Height -= scale;
-          BackColor = BackColor.Lerp(DefaultColour, lerpRate);
-        }
-        else
-        {
-          timer.Stop();
-          BackColor = DefaultColour;
-        }
-        SendToBack();
-      }
-    }
-    protected override void OnMouseEnter(EventArgs e)
-    {
-      base.OnMouseEnter(e);
-      Enlarging = true;
-      LastInteractionLocation = Location;
-      timer.Start();
-    }
-    protected override void OnMouseLeave(EventArgs e)
-    {
-      base.OnMouseLeave(e);
-      Enlarging = false;
-      timer.Start();
-      UpdateControl();
-    }
     #endregion
     #region Events
     /// <summary>
@@ -190,6 +137,78 @@ namespace Visual_Pathfinding_Algorithm
           DefaultColour = Color.DodgerBlue;
           return;
       }
+    }
+
+    /// <summary>
+    /// Aniimates the node control.
+    /// </summary>
+    public void Animate()
+    {
+      Type = NodeType.FINISHED;
+      HighlightedColour = Color.DodgerBlue;
+      DefaultColour = Color.DodgerBlue;
+
+      LastInteractionLocation = Location;
+
+      Enlarging = true;
+      timer.Start();
+
+      Enlarging = false;
+      timer.Start();
+    }
+
+    protected void HandleTransformation(object? sender, EventArgs e)
+    {
+      int locationTranslation = 13;
+      int scale = 5;
+      float lerpRate = 0.15f;
+
+      if (Enlarging)
+      {
+        Location = new Point(LastInteractionLocation.X - locationTranslation, LastInteractionLocation.Y - locationTranslation);
+        if (Size.Width < ControlHoverSize.Width)
+        {
+          Width += scale;
+          Height += scale;
+          BackColor = BackColor.Lerp(HighlightedColour, lerpRate);
+        }
+        else
+        {
+          timer.Stop();
+          BackColor = HighlightedColour;
+        }
+        BringToFront();
+      }
+      else
+      {
+        Location = LastInteractionLocation;
+        if (Size.Width > ControlSize.Width)
+        {
+          Width -= scale;
+          Height -= scale;
+          BackColor = BackColor.Lerp(DefaultColour, lerpRate);
+        }
+        else
+        {
+          timer.Stop();
+          BackColor = DefaultColour;
+        }
+        SendToBack();
+      }
+    }
+    protected override void OnMouseEnter(EventArgs e)
+    {
+      base.OnMouseEnter(e);
+      Enlarging = true;
+      LastInteractionLocation = Location;
+      timer.Start();
+    }
+    protected override void OnMouseLeave(EventArgs e)
+    {
+      base.OnMouseLeave(e);
+      Enlarging = false;
+      timer.Start();
+      UpdateControl();
     }
     #endregion
   }

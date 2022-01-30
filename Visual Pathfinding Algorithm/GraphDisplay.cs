@@ -6,7 +6,7 @@ namespace Visual_Pathfinding_Algorithm
     private const int MOVE_STRAIGHT_COST = 10;
     private const int MOVE_DIAGONAL_COST = 14;
 
-    private Grid grid;
+    public Grid grid;
     private List<Node>? openList;
     private List<Node>? closedList;
 
@@ -127,7 +127,17 @@ namespace Visual_Pathfinding_Algorithm
       }
       path.Reverse();
 
+      AnimateFinalPath(path);
+
       return path;
+    }
+
+    private void AnimateFinalPath(List<Node> finalPath)
+    {
+      foreach (var panel in finalPath)
+      {
+        panel.Animate();
+      }
     }
 
     private int CalculateDistance(Node a, Node b)

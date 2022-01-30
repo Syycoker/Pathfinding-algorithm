@@ -37,7 +37,7 @@ namespace Visual_Pathfinding_Algorithm
     }
 
     /// <summary>
-    /// Explicitly Sets the 'choosing' mode back to normal.
+    /// Explicitly Sets the 'choosing' mode back to normal, is a little weird, will figure out...
     /// </summary>
     public void ResetNodes()
     {
@@ -118,8 +118,6 @@ namespace Visual_Pathfinding_Algorithm
         SelectNullNodeButton.Enabled = false;
         SelectBlockNodeButton.Enabled = false;
         SelectEndNodeButton.Enabled = false;
-
-        // now using the 'e' argument, we'll simulate a user on enter event, but slowly
       }
       catch (Exception eArgs)
       {

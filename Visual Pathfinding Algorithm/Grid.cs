@@ -8,7 +8,7 @@ namespace Visual_Pathfinding_Algorithm
 {
   public class Grid
   {
-    private Node[,] gridArray;
+    public Node[,] gridArray;
 
     public Grid(int width, int height, Control control)
     {

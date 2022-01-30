@@ -36,7 +36,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(534, 511);
+      this.ClientSize = new System.Drawing.Size(553, 544);
       this.Name = "GraphDisplay";
       this.Text = "Grid";
       this.ResumeLayout(false);
