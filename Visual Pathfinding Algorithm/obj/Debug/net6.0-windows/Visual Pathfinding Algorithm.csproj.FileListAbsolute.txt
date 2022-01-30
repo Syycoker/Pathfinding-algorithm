@@ -16,4 +16,4 @@ C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfindin
 C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\obj\Debug\net6.0-windows\Visual Pathfinding Algorithm.pdb
 C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\obj\Debug\net6.0-windows\Visual Pathfinding Algorithm.genruntimeconfig.cache
 C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\obj\Debug\net6.0-windows\Visual_Pathfinding_Algorithm.GraphDisplay.resources
-C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\obj\Debug\net6.0-windows\Visual_Pathfinding_Algorithm.SelectionMenu.resources
+C:\Users\Sylas Coker\source\repos\Visual Pathfinding Algorithm\Visual Pathfinding Algorithm\obj\Debug\net6.0-windows\Visual_Pathfinding_Algorithm.MainMenu.resources

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Visual_Pathfinding_Algorithm
 {
-  public static class Designs
+  /// <summary>
+  /// A static class to help with designing the program.
+  /// </summary>
+  public static class Design
   {
     /// <summary>
     /// Color interpolation.

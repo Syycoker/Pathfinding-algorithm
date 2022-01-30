@@ -18,9 +18,9 @@ namespace Visual_Pathfinding_Algorithm
       {
         for (int y = 0; y < gridArray.GetLength(1); y++)
         {
-          int xLocation = x * 55; // 50 for the defaultsize + 5 for the spacing.
+          int xLocation = x * 55; // 50 for the default size + 5 for the spacing.
           int yLocation = y * 55;
-          Node newNode = new Node(this, xLocation, yLocation);
+          Node newNode = new Node(this, x, y) { Location = new Point(xLocation, yLocation) };
           newNode.Parent = control;
           control.Controls.Add(newNode);
           gridArray[x, y] = newNode;

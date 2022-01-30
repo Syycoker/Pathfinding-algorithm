@@ -15,13 +15,11 @@ namespace Visual_Pathfinding_Algorithm
     #region Node Attributes
     public Grid? Grid;
     public NodeType Type { get; set; } = NodeType.NULL;
-    private int x;
-    private int y;
-
+    public int x;
+    public int y;
     public int gCost;
     public int hCost;
     public int fCost;
-
     public Node? cameFromNode;
     #endregion
     #region Control Attributes
@@ -36,7 +34,6 @@ namespace Visual_Pathfinding_Algorithm
       InitializeComponent();
       UpdateControl();
     }
-
     public Node(Grid grid, int x, int y)
     {
       InitializeComponent();
@@ -44,8 +41,6 @@ namespace Visual_Pathfinding_Algorithm
       Grid = grid;
       this.x = x;
       this.y = y;
-
-      Location = new Point(x ,y);
     }
     #endregion
     #region Public
@@ -57,27 +52,23 @@ namespace Visual_Pathfinding_Algorithm
       BackColor = highlighted ? HighlightedColour : DefaultColour;
       Highlighted = highlighted;
     }
-
     public void CalculateFCost()
     {
       fCost = gCost + hCost;
     }
-    #endregion
-    #region Private
-
     public override string ToString()
     {
       return x + "," + y;
     }
+    #endregion
+    #region Private
     protected void UpdateControl()
     {
       Size = ControlSize;
       BackColor = DefaultColour;
       Cursor = Cursors.Hand;
-      Location = new Point(x, y);
       Location = LastInteractionLocation;
     }
-
     protected void HandleTransformation(object? sender, EventArgs e)
     {
       int locationTranslation = 13;
@@ -117,7 +108,6 @@ namespace Visual_Pathfinding_Algorithm
         SendToBack();
       }
     }
-
     protected override void OnMouseEnter(EventArgs e)
     {
       base.OnMouseEnter(e);
@@ -125,7 +115,6 @@ namespace Visual_Pathfinding_Algorithm
       LastInteractionLocation = Location;
       timer.Start();
     }
-
     protected override void OnMouseLeave(EventArgs e)
     {
       base.OnMouseLeave(e);
@@ -135,13 +124,19 @@ namespace Visual_Pathfinding_Algorithm
     }
     #endregion
     #region Events
-    private void Node_Click(object sender, EventArgs e)
+    /// <summary>
+    /// Notifies the wrapper form that a node has been clicked, therefore, set certain buttons asdisbaled to cause less of a complication, ie.e multiple 'Start Node's.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void HandleNodeClick(object sender, EventArgs e)
     {
       if (Program.WrapperForm != null)
       {
         if (Program.WrapperForm.StartMode)
         {
           Type = NodeType.START;
+          Program.WrapperForm.StartNode = this;
         }
         if (Program.WrapperForm.NullMode)
         {
@@ -154,13 +149,19 @@ namespace Visual_Pathfinding_Algorithm
         if (Program.WrapperForm.EndMode)
         {
           Type = NodeType.END;
+          Program.WrapperForm.EndNode = this;
         }
 
-        Program.WrapperForm.ResetModes();
+        Program.WrapperForm.ResetNodes();
       }
     }
 
-    private void NodeTypeTimer_Tick(object sender, EventArgs e)
+    /// <summary>
+    /// Handles the 'default colour' of a node based on it's assinged type.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void HandleNodeTypeColour(object sender, EventArgs e)
     {
       switch (Type)
       {
@@ -168,6 +169,7 @@ namespace Visual_Pathfinding_Algorithm
           DefaultColour = Color.Green;
           return;
 
+        default:
         case NodeType.NULL:
           DefaultColour = Color.White;
           return;
@@ -178,6 +180,14 @@ namespace Visual_Pathfinding_Algorithm
 
         case NodeType.END:
           DefaultColour = Color.Red;
+          return;
+
+        case NodeType.VALID:
+          DefaultColour = Color.Yellow;
+          return;
+
+        case NodeType.FINISHED:
+          DefaultColour = Color.DodgerBlue;
           return;
       }
     }

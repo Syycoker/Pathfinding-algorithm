@@ -11,6 +11,8 @@ namespace Visual_Pathfinding_Algorithm
     START = 0,
     NULL = 1,
     BLOCK = 2,
-    END = 3
+    END = 3,
+    VALID = 4,
+    FINISHED = 5
   }
 }

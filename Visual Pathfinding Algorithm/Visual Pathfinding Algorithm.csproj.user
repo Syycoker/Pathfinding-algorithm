@@ -7,7 +7,7 @@
     <Compile Update="Node.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="SelectionMenu.cs">
+    <Compile Update="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

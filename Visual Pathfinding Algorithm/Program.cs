@@ -9,13 +9,13 @@ namespace Visual_Pathfinding_Algorithm
     static void Main()
     {
       ApplicationConfiguration.Initialize();
-      WrapperForm = new SelectionMenu();
+      WrapperForm = new MainMenu();
       Application.Run(WrapperForm);
     }
 
     /// <summary>
     /// Singleton Implementaion, to get information directly to children without using a delegate, sorry I felt lazy lol.
     /// </summary>
-    public static SelectionMenu? WrapperForm { get; set; }
+    public static MainMenu? WrapperForm { get; set; }
   }
 }

@@ -46,6 +46,7 @@ namespace Visual_Pathfinding_Algorithm
 
         if (currentNode == endNode)
         {
+          endNode.Type = NodeType.START;
           // We've Reached the final node
           return CalculatePath(endNode);
         }
@@ -56,6 +57,12 @@ namespace Visual_Pathfinding_Algorithm
         foreach (Node neighbourNode in GetNeighbourList(currentNode))
         {
           if (closedList.Contains(neighbourNode)) { continue; }
+
+          if (neighbourNode.Type == NodeType.BLOCK)
+          {
+            closedList.Add(neighbourNode);
+            continue;
+          }
           int tentativeGCost = currentNode.gCost + CalculateDistance(currentNode, neighbourNode);
           if (tentativeGCost < neighbourNode.gCost)
           {
@@ -66,6 +73,7 @@ namespace Visual_Pathfinding_Algorithm
 
             if (!openList.Contains(neighbourNode))
             {
+              neighbourNode.Type = NodeType.VALID;
               openList.Add(neighbourNode);
             }
           }
@@ -83,20 +91,20 @@ namespace Visual_Pathfinding_Algorithm
     private List<Node> GetNeighbourList(Node currentNode)
     {
       List<Node> nList = new();
-      if (currentNode.Location.X - 1 >= 0)
+      if (currentNode.x - 1 >= 0)
       {
-        nList.Add(GetNode(currentNode.Location.X - 1, currentNode.Location.Y));
-        if (currentNode.Location.Y - 1 >= 0) { nList.Add(GetNode(currentNode.Location.X - 1, currentNode.Location.Y - 1)); }
-        if (currentNode.Location.Y + 1 < grid.GetHeight()) { nList.Add(GetNode(currentNode.Location.X - 1, currentNode.Location.Y + 1)); }
+        nList.Add(GetNode(currentNode.x - 1, currentNode.y));
+        if (currentNode.y - 1 >= 0) { nList.Add(GetNode(currentNode.x - 1, currentNode.y - 1)); }
+        if (currentNode.y + 1 < grid.GetHeight()) { nList.Add(GetNode(currentNode.x - 1, currentNode.y + 1)); }
       }
-      if (currentNode.Location.X + 1 < grid.GetWidth())
+      if (currentNode.x + 1 < grid.GetWidth())
       {
-        nList.Add(GetNode(currentNode.Location.X + 1, currentNode.Location.Y));
-        if (currentNode.Location.Y - 1 >= 0) { nList.Add(GetNode(currentNode.Location.X + 1, currentNode.Location.Y - 1)); }
-        if (currentNode.Location.Y + 1 < grid.GetHeight()) { nList.Add(GetNode(currentNode.Location.X + 1, currentNode.Location.Y + 1)); }
+        nList.Add(GetNode(currentNode.x + 1, currentNode.y));
+        if (currentNode.y - 1 >= 0) { nList.Add(GetNode(currentNode.x + 1, currentNode.y - 1)); }
+        if (currentNode.y + 1 < grid.GetHeight()) { nList.Add(GetNode(currentNode.x + 1, currentNode.y + 1)); }
       }
-      if (currentNode.Location.Y - 1 >= 0) { nList.Add(GetNode(currentNode.Location.X, currentNode.Location.Y - 1)); }
-      if (currentNode.Location.Y + 1 < grid.GetHeight()) { nList.Add(GetNode(currentNode.Location.X, currentNode.Location.Y + 1)); }
+      if (currentNode.y - 1 >= 0) { nList.Add(GetNode(currentNode.x, currentNode.y - 1)); }
+      if (currentNode.y + 1 < grid.GetHeight()) { nList.Add(GetNode(currentNode.x, currentNode.y + 1)); }
 
       return nList;
     }
@@ -115,15 +123,17 @@ namespace Visual_Pathfinding_Algorithm
       {
         path.Add(currentNode.cameFromNode);
         currentNode = currentNode.cameFromNode;
+        currentNode.Type = NodeType.FINISHED;
       }
       path.Reverse();
+
       return path;
     }
 
     private int CalculateDistance(Node a, Node b)
     {
-      int xDistance = Math.Abs(a.Location.X - b.Location.X);
-      int yDistance = Math.Abs(a.Location.Y - b.Location.Y);
+      int xDistance = Math.Abs(a.x - b.x);
+      int yDistance = Math.Abs(a.y - b.y);
       int remaining = Math.Abs(xDistance - yDistance);
       return MOVE_DIAGONAL_COST * Math.Min(xDistance, yDistance) + MOVE_STRAIGHT_COST * remaining;
     }

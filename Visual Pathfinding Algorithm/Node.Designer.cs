@@ -40,14 +40,15 @@
       // 
       // NodeTypeTimer
       // 
-      this.NodeTypeTimer.Tick += new System.EventHandler(this.NodeTypeTimer_Tick);
+      this.NodeTypeTimer.Enabled = true;
+      this.NodeTypeTimer.Tick += new System.EventHandler(this.HandleNodeTypeColour);
       // 
       // Node
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Name = "Node";
-      this.Click += new System.EventHandler(this.Node_Click);
+      this.Click += new System.EventHandler(this.HandleNodeClick);
       this.ResumeLayout(false);
 
     }
