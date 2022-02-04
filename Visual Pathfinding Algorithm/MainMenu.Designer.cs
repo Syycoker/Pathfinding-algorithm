@@ -60,6 +60,7 @@
       // 
       // Display.Panel2
       // 
+      this.Display.Panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
       this.Display.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
       this.Display.Size = new System.Drawing.Size(739, 584);
       this.Display.SplitterDistance = 169;
@@ -67,7 +68,7 @@
       // 
       // VisualiseButton
       // 
-      this.VisualiseButton.BackColor = System.Drawing.Color.SteelBlue;
+      this.VisualiseButton.BackColor = System.Drawing.Color.Green;
       this.VisualiseButton.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.VisualiseButton.Location = new System.Drawing.Point(0, 500);
       this.VisualiseButton.Name = "VisualiseButton";
@@ -90,46 +91,50 @@
       // 
       // SelectEndNodeButton
       // 
+      this.SelectEndNodeButton.BackColor = System.Drawing.Color.LightSteelBlue;
       this.SelectEndNodeButton.Dock = System.Windows.Forms.DockStyle.Top;
-      this.SelectEndNodeButton.Location = new System.Drawing.Point(0, 69);
+      this.SelectEndNodeButton.Location = new System.Drawing.Point(0, 375);
       this.SelectEndNodeButton.Name = "SelectEndNodeButton";
-      this.SelectEndNodeButton.Size = new System.Drawing.Size(169, 23);
+      this.SelectEndNodeButton.Size = new System.Drawing.Size(169, 125);
       this.SelectEndNodeButton.TabIndex = 3;
       this.SelectEndNodeButton.Text = "Select End Node";
-      this.SelectEndNodeButton.UseVisualStyleBackColor = true;
+      this.SelectEndNodeButton.UseVisualStyleBackColor = false;
       this.SelectEndNodeButton.Click += new System.EventHandler(this.HandleEndNodeSelection);
       // 
       // SelectNullNodeButton
       // 
+      this.SelectNullNodeButton.BackColor = System.Drawing.Color.LightSteelBlue;
       this.SelectNullNodeButton.Dock = System.Windows.Forms.DockStyle.Top;
-      this.SelectNullNodeButton.Location = new System.Drawing.Point(0, 46);
+      this.SelectNullNodeButton.Location = new System.Drawing.Point(0, 250);
       this.SelectNullNodeButton.Name = "SelectNullNodeButton";
-      this.SelectNullNodeButton.Size = new System.Drawing.Size(169, 23);
+      this.SelectNullNodeButton.Size = new System.Drawing.Size(169, 125);
       this.SelectNullNodeButton.TabIndex = 2;
       this.SelectNullNodeButton.Text = "Select Null Node";
-      this.SelectNullNodeButton.UseVisualStyleBackColor = true;
+      this.SelectNullNodeButton.UseVisualStyleBackColor = false;
       this.SelectNullNodeButton.Click += new System.EventHandler(this.HandleNullNodeSelection);
       // 
       // SelectBlockNodeButton
       // 
+      this.SelectBlockNodeButton.BackColor = System.Drawing.Color.LightSteelBlue;
       this.SelectBlockNodeButton.Dock = System.Windows.Forms.DockStyle.Top;
-      this.SelectBlockNodeButton.Location = new System.Drawing.Point(0, 23);
+      this.SelectBlockNodeButton.Location = new System.Drawing.Point(0, 125);
       this.SelectBlockNodeButton.Name = "SelectBlockNodeButton";
-      this.SelectBlockNodeButton.Size = new System.Drawing.Size(169, 23);
+      this.SelectBlockNodeButton.Size = new System.Drawing.Size(169, 125);
       this.SelectBlockNodeButton.TabIndex = 1;
       this.SelectBlockNodeButton.Text = "Select Block Node";
-      this.SelectBlockNodeButton.UseVisualStyleBackColor = true;
+      this.SelectBlockNodeButton.UseVisualStyleBackColor = false;
       this.SelectBlockNodeButton.Click += new System.EventHandler(this.HandleBlockNodeSelection);
       // 
       // StartNodeButton
       // 
+      this.StartNodeButton.BackColor = System.Drawing.Color.LightSteelBlue;
       this.StartNodeButton.Dock = System.Windows.Forms.DockStyle.Top;
       this.StartNodeButton.Location = new System.Drawing.Point(0, 0);
       this.StartNodeButton.Name = "StartNodeButton";
-      this.StartNodeButton.Size = new System.Drawing.Size(169, 23);
+      this.StartNodeButton.Size = new System.Drawing.Size(169, 125);
       this.StartNodeButton.TabIndex = 0;
       this.StartNodeButton.Text = "Select Start Node";
-      this.StartNodeButton.UseVisualStyleBackColor = true;
+      this.StartNodeButton.UseVisualStyleBackColor = false;
       this.StartNodeButton.Click += new System.EventHandler(this.HandleStartNodeSelection);
       // 
       // MainMenu
@@ -138,6 +143,8 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(739, 584);
       this.Controls.Add(this.Display);
+      this.MaximumSize = new System.Drawing.Size(755, 623);
+      this.MinimumSize = new System.Drawing.Size(755, 623);
       this.Name = "MainMenu";
       this.Text = "Path Finding Visualiser";
       this.Display.Panel1.ResumeLayout(false);

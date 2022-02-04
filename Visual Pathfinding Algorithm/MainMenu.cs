@@ -25,15 +25,20 @@ namespace Visual_Pathfinding_Algorithm
     public MainMenu()
     {
       InitializeComponent();
+      CreateGraph();
+    }
 
-      Graph = new GraphDisplay(10,10); // Instantiate a grid of 10 x 10.
+    #region Public
+
+    public void CreateGraph(int width = 10, int height = 10)
+    {
+      Graph = new GraphDisplay(width, height); // Instantiate a grid of 10 x 10.
       Graph.TopLevel = false;
       Graph.Parent = Display.Panel2;
       Display.Panel2.Controls.Add(Graph);
-
-      Graph.Show();
-
       Graph.Dock = DockStyle.Fill;
+      Graph.Show();
+      Graph.BringToFront();
     }
 
     /// <summary>
@@ -46,7 +51,7 @@ namespace Visual_Pathfinding_Algorithm
       BlockMode = false;
       EndMode = false;
     }
-
+    #endregion
     #region Events
     private void HandleStartNodeSelection(object sender, EventArgs e)
     {
@@ -95,8 +100,8 @@ namespace Visual_Pathfinding_Algorithm
       SelectEndNodeButton.Enabled = true;
 
       ResetNodes();
-
-      MessageBox.Show("Nodes have now been reset.", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      Graph.Close();
+      CreateGraph();
     }
 
     /// <summary>

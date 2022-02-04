@@ -134,6 +134,8 @@ namespace Visual_Pathfinding_Algorithm
 
     private void AnimateFinalPath(List<Node> finalPath)
     {
+      Text = "Hover your mouse around the final nodes to find the calculated path.";
+
       foreach (var panel in finalPath)
       {
         panel.Animate();
@@ -161,11 +163,6 @@ namespace Visual_Pathfinding_Algorithm
       }
 
       return lowestFCostNode;
-    }
-
-    private void GraphDisplay_Resize(object sender, EventArgs e)
-    {
-      Text = Width + "-" + Height;
     }
   }
 }

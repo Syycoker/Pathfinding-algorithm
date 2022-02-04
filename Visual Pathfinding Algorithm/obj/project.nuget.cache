@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hD9OsGo7asSH4M/GnzczYKKOIX5QaDKTTha94tFOeKPkawmbek6s09lQEEhNfV4z8Q0gwdAteJydHib7bHrwIw==",
+  "dgSpecHash": "g4++9GX4uRzM2x6R42zn0kJeJmhuvrgXu28gdB6UgWCQVLoplKppUFBrcI+kpglIniRiiVtAWMGCDGQEVex0/A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sylas Coker\\source\\repos\\Visual Pathfinding Algorithm\\Visual Pathfinding Algorithm\\Visual Pathfinding Algorithm.csproj",
+  "projectFilePath": "C:\\Users\\coker\\Documents\\GitHub\\Pathfinding-algorithm\\Visual Pathfinding Algorithm\\Visual Pathfinding Algorithm.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
