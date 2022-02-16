@@ -6,5 +6,4 @@ How to use:
 * Repeat for any of the selections made in the menu.
 * Click "Visualise" (provided that the "Start" & "End" node were selected in the grid.
 * Hover around the highlighted path (if there is one) to see how the Algorithm visitied its neighbouring nodes to get to the final step.
-
-* Repeat!
+* Clear the grid and repeat!
